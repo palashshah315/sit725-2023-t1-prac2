@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<head>
+    <title>TITLE</title>
+    <style>
+        .align-center {
+            text-align: center;
+        }
+    </style>
+    <script async>
+        function mulitply() {
+            var number1 = document.getElementById("number1").value;
+            var number2 = document.getElementById("number2").value;
+            fetch('/multiplicationOfNumbers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ num1: number1, num2: number2 })
+            })
+                .then(response => response.json())
+                .then(data => document.getElementById('res').innerHTML = "Answer is " + data.data)
+                .catch(error => console.error(error));
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1 class="align-center">SIT725 - Applied Software Engineering</h1>
+    <h3 class="align-center">Practical 2 Addition of Two Numbers</h3>
+    <li>For Addition of two numbers please enter this link in browser "http://localhost:3000/addTwoNumbers?num1=enter a
+        number&num2=enter
+        a number"</li>
+    <li>Multiplication of two numbers using POST method please enter this link in browser
+        <input type="number" placeholder="Enter a number 1" id="number1">
+        <input type="number" placeholder="Enter a number 2" id="number2">
+        <button onclick="mulitply()">Click to Multiply numbers using POST method</button>
+        <p id="res"></p>
+    </li>
+</body>
+
+</html>
